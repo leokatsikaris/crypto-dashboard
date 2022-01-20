@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Cryptocard } from '../Cryptocard/Cryptocard';
 
 
 export function Dashboard() {
@@ -7,9 +8,12 @@ export function Dashboard() {
 
 
 
-    useEffect(async () => {
-        let interactionAPI = await axios.get('https://api2.binance.com/api/v3/ticker/24hr');
-        await setInfo(interactionAPI.data);
+    useEffect(() => {
+        async function fetchData () {
+            let interactionAPI = await axios.get('https://api2.binance.com/api/v3/ticker/24hr');
+            await setInfo(interactionAPI.data);
+        }
+        fetchData();
       }, []);
 
 
@@ -17,10 +21,7 @@ export function Dashboard() {
     return (
             <div>{info.map(c => {
                 return (
-                <div>
-                <p>{c.symbol}</p>
-                <p>{c.priceChange}</p>
-                </div>
+                <Cryptocard symbol={c.symbol} priceChange={c.priceChange} />
                 )
             })}</div>
     )
