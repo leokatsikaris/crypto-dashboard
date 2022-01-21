@@ -8,7 +8,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TablePagination from '@mui/material/TablePagination';
-import Pagination from '@mui/material/Pagination';
 
 export function Dashboard() {
   const [info, setInfo] = useState([]);
@@ -61,8 +60,14 @@ export function Dashboard() {
               </TableCell>
               <TableCell align="right">${c.openPrice}</TableCell>
               <TableCell align="right">${c.lastPrice}</TableCell>
-              <TableCell align="right">${c.priceChange}</TableCell>
-              <TableCell align="right">{c.priceChangePercent} %</TableCell>
+              {c.priceChange[0] === '-' ? 
+              <TableCell style={{color: "red"}} align="right">${c.priceChange}</TableCell> :
+              <TableCell style={{color: "green"}} align="right">${c.priceChange}</TableCell>
+            } 
+              {c.priceChangePercent[0] === '-' ? 
+              <TableCell style={{color: "red"}} align="right">${c.priceChangePercent}</TableCell> :
+              <TableCell style={{color: "green"}} align="right">${c.priceChangePercent}</TableCell>
+            }
               <TableCell align="right">${c.volume}</TableCell>
             </TableRow>
           ))}
