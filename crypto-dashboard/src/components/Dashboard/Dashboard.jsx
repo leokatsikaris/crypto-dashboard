@@ -8,6 +8,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TablePagination from '@mui/material/TablePagination';
+import AppBar from '@mui/material/AppBar';
+import Typography from '@mui/material/Typography';
+import { fontWeight } from '@mui/system';
 
 export function Dashboard() {
   const [info, setInfo] = useState([]);
@@ -36,16 +39,21 @@ export function Dashboard() {
 
   return (
     <div>
+  <AppBar position="static">
+      <Typography variant="h6" color="inherit" component="div">
+       Crypto Dashboard 24 hs. 
+      </Typography>
+  </AppBar>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Crypto</TableCell>
-            <TableCell align="right">Price</TableCell>
-            <TableCell align="right">Last Price</TableCell>
-            <TableCell align="right">Price change</TableCell>
-            <TableCell align="right">Price change %</TableCell>
-            <TableCell align="right">Volume</TableCell>
+            <TableCell style={{fontWeight: "bolder"}}>Crypto</TableCell>
+            <TableCell align="right" style={{fontWeight: "bolder"}}>Price</TableCell>
+            <TableCell align="right" style={{fontWeight: "bolder"}}>Last Price</TableCell>
+            <TableCell align="right" style={{fontWeight: "bolder"}}>Price change</TableCell>
+            <TableCell align="right" style={{fontWeight: "bolder"}}>Price change %</TableCell>
+            <TableCell align="right" style={{fontWeight: "bolder"}}>Volume</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -60,15 +68,17 @@ export function Dashboard() {
               </TableCell>
               <TableCell align="right">${c.openPrice}</TableCell>
               <TableCell align="right">${c.lastPrice}</TableCell>
-              {c.priceChange[0] === '-' ? 
-              <TableCell style={{color: "red"}} align="right">${c.priceChange}</TableCell> :
-              <TableCell style={{color: "green"}} align="right">${c.priceChange}</TableCell>
-            } 
-              {c.priceChangePercent[0] === '-' ? 
-              <TableCell style={{color: "red"}} align="right">${c.priceChangePercent}</TableCell> :
-              <TableCell style={{color: "green"}} align="right">${c.priceChangePercent}</TableCell>
-            }
-              <TableCell align="right">${c.volume}</TableCell>
+            <TableCell 
+            style={{color: c.priceChange[0] === '-' ? 'red' : 'green'}} 
+            align="right"> 
+            ${c.priceChange}
+            </TableCell>
+            <TableCell 
+            style={{color: c.priceChangePercent[0] === '-' ? 'red' : 'green'}} 
+            align="right"> 
+            {c.priceChangePercent}%
+            </TableCell>
+            <TableCell align="right">${c.volume}</TableCell>
             </TableRow>
           ))}
         </TableBody>
