@@ -8,10 +8,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TablePagination from '@mui/material/TablePagination';
-import AppBar from '@mui/material/AppBar';
-import Typography from '@mui/material/Typography';
 import {AiOutlineArrowUp, AiOutlineArrowDown}  from 'react-icons/ai';
 import Button from '@mui/material/Button';
+import styles from './Dashboard.module.css';
 
 
 export function Dashboard() {
@@ -69,12 +68,11 @@ export function Dashboard() {
 
   return (
     <div>
-  {/* <AppBar position="static">
-      <Typography variant="h6" color="inherit" component="div">
-       Crypto Dashboard 24 hs. 
-      </Typography>
-  </AppBar> */}
-  <h1>Crypto Dashboard 24 hs.</h1>
+      <div className={styles.titleContainer}>
+        <h1 className={styles.title}>
+        Crypto Dashboard 24 hs.
+        </h1>
+      </div>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
