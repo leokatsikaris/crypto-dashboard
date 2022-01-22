@@ -10,12 +10,15 @@ import Paper from '@mui/material/Paper';
 import TablePagination from '@mui/material/TablePagination';
 import AppBar from '@mui/material/AppBar';
 import Typography from '@mui/material/Typography';
-import { fontWeight } from '@mui/system';
+import {AiOutlineArrowUp, AiOutlineArrowDown}  from 'react-icons/ai';
+import Button from '@mui/material/Button';
+
 
 export function Dashboard() {
-  const [info, setInfo] = useState([]);
+  let [info, setInfo] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [ascOrder, setAscOrder] = useState(false);
   
   useEffect(() => {
     async function fetchData () {
@@ -34,22 +37,62 @@ export function Dashboard() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+  const handleRequestSort = () => {
+    setAscOrder(!ascOrder);
+    console.log('funcion usada');
+  };
+
+  if (ascOrder){
+    info = info?.sort(function (a, b) {
+        if (a.openPrice > b.openPrice) {
+          return 1;
+        }
+        if (a.openPrice < b.openPrice) {
+          return -1;
+        }
+        return 0;
+      });
+  } else{
+    info = info?.sort(function (a, b) {
+        if (b.openPrice > a.openPrice) {
+          return 1;
+        }
+        if (b.openPrice < a.openPrice) {
+          return -1;
+        }
+        return 0;
+      });
+  }
   
 
 
   return (
     <div>
-  <AppBar position="static">
+  {/* <AppBar position="static">
       <Typography variant="h6" color="inherit" component="div">
        Crypto Dashboard 24 hs. 
       </Typography>
-  </AppBar>
+  </AppBar> */}
+  <h1>Crypto Dashboard 24 hs.</h1>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell style={{fontWeight: "bolder"}}>Crypto</TableCell>
-            <TableCell align="right" style={{fontWeight: "bolder"}}>Price</TableCell>
+            <TableCell align="right" style={{fontWeight: "bolder"}}>
+              {ascOrder ? 
+              <Button 
+              onClick={handleRequestSort}>
+              <AiOutlineArrowDown />
+              </Button> : 
+              <Button
+              variant="text"
+              onClick={handleRequestSort}>
+                <AiOutlineArrowUp />
+              </Button>}
+              Price
+              </TableCell>
             <TableCell align="right" style={{fontWeight: "bolder"}}>Last Price</TableCell>
             <TableCell align="right" style={{fontWeight: "bolder"}}>Price change</TableCell>
             <TableCell align="right" style={{fontWeight: "bolder"}}>Price change %</TableCell>
