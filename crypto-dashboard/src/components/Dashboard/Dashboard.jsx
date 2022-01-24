@@ -11,6 +11,7 @@ import TablePagination from '@mui/material/TablePagination';
 import {AiOutlineArrowUp, AiOutlineArrowDown}  from 'react-icons/ai';
 import Button from '@mui/material/Button';
 import styles from './Dashboard.module.css';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 export function Dashboard() {
@@ -18,14 +19,20 @@ export function Dashboard() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [ascOrder, setAscOrder] = useState(false);
+  const [loading, setLoading] = useState(true);
   
   useEffect(() => {
+    if (loading) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    }
     async function fetchData () {
       let interactionAPI = await axios.get('https://api2.binance.com/api/v3/ticker/24hr');
       await setInfo(interactionAPI.data);
     }
     fetchData();
-  }, []);
+  }, [loading]);
 
   
   const handleChangePage = (event, newPage) => {
@@ -63,6 +70,13 @@ export function Dashboard() {
         return 0;
       });
   }
+
+  if (loading)
+  return (
+    <div className={styles.loadingContainer}>
+    <CircularProgress color="inherit" />
+    </div>
+  );
   
 
 
