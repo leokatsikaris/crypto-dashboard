@@ -18,3 +18,6 @@ Para ver el sitio desde el servidor local:
 3) Abrir una terminal.
 4) Ingresar "npm start".
 5) Esperar a que el navegador abra el sitio. 
+
+
+Enlace al proyecto desplegado: https://crypto-dashboard-6cmbzmxvc-leokatsikaris.vercel.app/ 
