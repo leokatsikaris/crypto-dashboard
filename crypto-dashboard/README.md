@@ -8,6 +8,8 @@ Este es un sitio web que recopila en una tabla los siguientes datos de distintas
 
 El sitio permite ordenar las criptomonedas por precio tanto ascendente como descendentemente. 
 
+API utilizada: https://api2.binance.com/api/v3/ticker/24hr 
+
 
 Para ver el sitio desde el servidor local:
 
