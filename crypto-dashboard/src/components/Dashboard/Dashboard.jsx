@@ -75,7 +75,7 @@ export function Dashboard() {
       </div>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
+        <TableHead >
           <TableRow>
             <TableCell style={{fontWeight: "bolder"}}>Crypto</TableCell>
             <TableCell align="right" style={{fontWeight: "bolder"}}>
